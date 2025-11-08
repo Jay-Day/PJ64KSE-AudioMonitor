@@ -89,12 +89,49 @@ pyautogui.press('right')  # Change to 'right', presses=2 for third tick, etc.
 
 ## How It Works
 
-1. Monitors the Project64KSE process and window title
-2. Detects when you load a ROM (window title changes)
-3. Waits 2 seconds for the ROM to initialize
-4. Navigates to: Options → Configure Audio Plugin
-5. Sets the buffer slider to the second tick
-6. Saves the settings
+The script uses a continuous monitoring loop to detect when you load a ROM and automatically applies the audio buffer fix. Here's exactly what happens:
+
+### Monitoring Phase
+
+1. **Process Detection**: Every 2 seconds, the script checks if `Project64KSE.exe` is running using `psutil`
+
+2. **Window Tracking**: Once detected, the script captures the main emulator window's PID (process ID) to monitor only the primary window, ignoring child windows
+
+3. **Title Monitoring**: The script reads the window title using Windows APIs (`win32gui`) to detect ROM loading
+
+4. **ROM Detection Logic**:
+   - A ROM is considered "loaded" when the window title changes from the base emulator title to include a ROM name (format: `Project64KSE - [ROM Name]`)
+   - The script specifically **ignores netplay windows** by checking for keywords like "netplay", "kaillera", "connected to", or "lobby" in the title
+   - It tracks state transitions: from "no ROM" to "ROM loaded" or from "ROM A" to "ROM B"
+
+### Auto-Fix Phase
+
+When a ROM load is detected:
+
+1. **Wait Period**: Waits 2 seconds for the ROM to fully initialize
+
+2. **Window Activation**: Brings the Project64KSE window to the foreground using `pyautogui`
+
+3. **Menu Navigation**:
+   - Presses `Alt+O` to open the Options menu
+   - Presses `Down` 3 times to navigate to "Configure Audio Plugin"
+   - Presses `Enter` to open the audio configuration dialog
+
+4. **Slider Adjustment**:
+   - Presses `Tab` twice to focus on the audio buffer slider
+   - Presses `Home` to move the slider to the leftmost position
+   - Presses `Right` once to move to the second tick (optimal setting)
+
+5. **Save Settings**: Presses `Enter` to save and close the dialog
+
+### Smart Filtering
+
+The script includes several safeguards to prevent false triggers:
+
+- **Netplay Protection**: Detects and ignores netplay-related window titles to avoid interfering during online play
+- **PID Filtering**: Only monitors the main emulator process window, not child/popup windows
+- **State Tracking**: Uses state machines to detect actual ROM loading transitions, not just any title change
+- **Ignored Titles**: Filters out common non-ROM windows like "File Explorer", "Desktop", etc.
 
 ## Troubleshooting
 
