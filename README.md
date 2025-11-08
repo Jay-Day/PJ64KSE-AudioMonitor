@@ -36,23 +36,6 @@ Project64KSE resets the audio buffer setting every time you load a ROM, causing 
    - This will automatically install all required packages
    - Wait for it to finish
 
-### Manual Way
-
-1. **Install Python** (if you don't have it)
-   - Download from [python.org](https://www.python.org/downloads/)
-   - During installation, check "Add Python to PATH"
-
-2. **Download this script**
-   ```bash
-   git clone https://github.com/yourusername/project64kse-audio-fixer.git
-   cd project64kse-audio-fixer
-   ```
-
-3. **Install required packages**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
 ## Usage
 
 1. **Run the monitor script:**
