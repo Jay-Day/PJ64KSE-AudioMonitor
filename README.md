@@ -2,6 +2,9 @@
 
 Automatically fixes the audio buffer setting in Project64KSE whenever you load a ROM.
 
+![2025-11-08 15-16-23](https://github.com/user-attachments/assets/6153fd65-cd2e-421d-bac2-9119b37fb25c)
+
+
 ## Problem
 
 Project64KSE resets the audio buffer setting every time you load a ROM, causing audio stuttering. This script automatically sets the audio buffer to the second tick (optimal setting) whenever you load a new ROM.
@@ -10,6 +13,7 @@ Project64KSE resets the audio buffer setting every time you load a ROM, causing 
 
 - 🎮 Automatically detects when you load a ROM
 - 🔧 Instantly applies the correct audio buffer setting
+
 - 🚫 Ignores netplay windows and other false triggers
 - 💻 Runs quietly in the background
 - 🔁 Works for every ROM you load
@@ -35,23 +39,6 @@ Project64KSE resets the audio buffer setting every time you load a ROM, causing 
 3. **Double-click `setup.bat`**
    - This will automatically install all required packages
    - Wait for it to finish
-
-### Manual Way
-
-1. **Install Python** (if you don't have it)
-   - Download from [python.org](https://www.python.org/downloads/)
-   - During installation, check "Add Python to PATH"
-
-2. **Download this script**
-   ```bash
-   git clone https://github.com/yourusername/project64kse-audio-fixer.git
-   cd project64kse-audio-fixer
-   ```
-
-3. **Install required packages**
-   ```bash
-   pip install -r requirements.txt
-   ```
 
 ## Usage
 
