@@ -1,6 +1,7 @@
 # Project64KSE Audio Buffer Auto-Fixer
 
 Automatically fixes the audio buffer setting in Project64KSE whenever you load a ROM.
+![2025-11-08 15-16-23](https://github.com/user-attachments/assets/95bcf552-4c46-4353-95fc-cd7a60c94fd5)
 
 ## Problem
 
@@ -10,6 +11,7 @@ Project64KSE resets the audio buffer setting every time you load a ROM, causing 
 
 - 🎮 Automatically detects when you load a ROM
 - 🔧 Instantly applies the correct audio buffer setting
+
 - 🚫 Ignores netplay windows and other false triggers
 - 💻 Runs quietly in the background
 - 🔁 Works for every ROM you load
