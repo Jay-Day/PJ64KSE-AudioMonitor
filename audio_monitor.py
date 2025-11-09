@@ -13,7 +13,7 @@ PROCESS_NAME = "Project64KSE.exe"
 CHECK_INTERVAL = 2  # Check every 2 seconds
 
 # PyAutoGUI settings
-pyautogui.PAUSE = 0.1
+pyautogui.PAUSE = 0.05  # Reduced from 0.1 for faster execution
 pyautogui.FAILSAFE = True
 
 def log(message):
@@ -75,7 +75,7 @@ def activate_window():
         if windows:
             window = windows[0]
             window.activate()
-            time.sleep(0.3)
+            time.sleep(0.15)  # Reduced from 0.3
             return True
     except:
         pass
@@ -92,25 +92,25 @@ def fix_audio_buffer():
     try:
         # Navigate to audio settings: Alt+O -> DOWN (3x) -> ENTER
         pyautogui.hotkey('alt', 'o')
-        time.sleep(0.3)
-        pyautogui.press('down', presses=3, interval=0.3)
-        time.sleep(0.3)
+        time.sleep(0.15)  # Reduced from 0.3
+        pyautogui.press('down', presses=3, interval=0.1)  # Reduced from 0.3
+        time.sleep(0.1)  # Reduced from 0.3
         pyautogui.press('enter')
-        time.sleep(0.8)
+        time.sleep(0.4)  # Reduced from 0.8
 
         # Navigate to buffer slider: TAB (2x)
-        pyautogui.press('tab', presses=2, interval=0.2)
-        time.sleep(0.3)
+        pyautogui.press('tab', presses=2, interval=0.1)  # Reduced from 0.2
+        time.sleep(0.1)  # Reduced from 0.3
 
         # Set slider to second tick: HOME then RIGHT
         pyautogui.press('home')
-        time.sleep(0.2)
+        time.sleep(0.1)  # Reduced from 0.2
         pyautogui.press('right')
-        time.sleep(0.2)
+        time.sleep(0.1)  # Reduced from 0.2
 
         # Save settings: ENTER
         pyautogui.press('enter')
-        time.sleep(0.5)
+        time.sleep(0.2)  # Reduced from 0.5
 
         log("  ✓ Audio buffer fixed!")
         return True
@@ -223,7 +223,7 @@ def monitor_rom_loading():
                     log(f"📀 ROM loaded: {rom_name}")
 
                     # Wait a moment for ROM to fully initialize
-                    time.sleep(2)
+                    time.sleep(1)  # Reduced from 2
 
                     # Apply the fix
                     fix_audio_buffer()
@@ -234,7 +234,7 @@ def monitor_rom_loading():
                 log(f"📀 ROM changed: {rom_name}")
 
                 # Wait a moment for ROM to fully initialize
-                time.sleep(2)
+                time.sleep(1)  # Reduced from 2
 
                 # Apply the fix
                 fix_audio_buffer()
